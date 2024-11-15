@@ -1,0 +1,3 @@
+psutil
+https://github.com/jererc/svcutils/archive/refs/heads/main.zip
+https://github.com/jererc/webutils/archive/refs/heads/main.zip
