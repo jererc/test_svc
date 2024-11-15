@@ -14,14 +14,11 @@ def target():
     logger.info('running')
 
 
-def main():
+def run(config_file=None):
+    print('config_file:', config_file)
     Service(
         target=target,
         work_path=WORK_PATH,
         run_delta=60,
         max_cpu_percent=10,
     ).run_once()
-
-
-if __name__ == '__main__':
-    main()
