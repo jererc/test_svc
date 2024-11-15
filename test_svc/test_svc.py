@@ -15,13 +15,12 @@ def target():
 
 
 def main():
-    service = Service(
+    Service(
         target=target,
         work_path=WORK_PATH,
         run_delta=60,
         max_cpu_percent=10,
-    )
-    service.run_once()
+    ).run_once()
 
 
 if __name__ == '__main__':
