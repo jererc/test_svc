@@ -4,20 +4,18 @@ import subprocess
 
 
 class Bootstrapper:
-    def __init__(self, script_path, requirements_file=None, venv_dir='venv',
+    def __init__(self, name, script_path, requires=None, venv_dir='venv',
                  task_schedule_mins=2, linux_args=None, windows_args=None):
+        self.name = name
         self.script_path = os.path.realpath(script_path)
-        self.requirements_file = requirements_file or os.path.join(
-            os.path.dirname(os.path.realpath(__file__)), 'requirements.txt')
+        self.requires = requires
         self.venv_dir = venv_dir
         self.task_schedule_mins = task_schedule_mins
         self.linux_args = linux_args
         self.windows_args = windows_args
-        self.script_name = os.path.splitext(os.path.basename(
-            self.script_path))[0]
         self.root_venv_path = os.path.join(os.path.expanduser('~'),
             self.venv_dir)
-        self.venv_path = os.path.join(self.root_venv_path, self.script_name)
+        self.venv_path = os.path.join(self.root_venv_path, self.name)
         self.pip_path = {
             'nt': os.path.join(self.venv_path, r'Scripts\pip.exe'),
             'posix': os.path.join(self.venv_path, 'bin/pip'),
@@ -34,8 +32,8 @@ class Bootstrapper:
             if os.name == 'nt':   # requires python3-virtualenv on linux
                 subprocess.check_call(['pip', 'install', 'virtualenv'])
             subprocess.check_call(['virtualenv', self.venv_path])
-        subprocess.check_call([self.pip_path, 'install', '-r',
-            self.requirements_file])
+        if self.requires:
+            subprocess.check_call([self.pip_path, 'install'] + self.requires)
         print(f'Created the virtualenv in {self.venv_path}')
 
     def _get_crontab_schedule(self):
@@ -87,10 +85,16 @@ class Bootstrapper:
         self._setup_venv()
         if os.name == 'nt':
             self._setup_windows_task(cmd=self._get_cmd(self.windows_args),
-                task_name=self.script_name)
+                task_name=self.name)
         else:
             self._setup_linux_task(cmd=self._get_cmd(self.linux_args))
 
 
-Bootstrapper(script_path=os.path.join(os.path.dirname(
-    os.path.realpath(__file__)), 'test_svc.py')).run()
+Bootstrapper(
+    name='test_svc',
+    script_path=os.path.join(os.path.dirname(
+        os.path.realpath(__file__)), 'run.py'),
+    requires=[
+        'https://github.com/jererc/test_svc/archive/refs/heads/main.zip',
+    ],
+).run()
