@@ -1,6 +1,6 @@
 import os
 
-from svcutils.svcutils import Service, get_logger
+from svcutils.svcutils import get_logger, load_config
 from webutils.webutils import get_browser_driver
 
 
@@ -10,15 +10,8 @@ WORK_PATH = os.path.join(os.path.expanduser('~'), f'.{NAME}')
 logger = get_logger(path=WORK_PATH, name=NAME)
 
 
-def target():
+def main(config_file):
+    config = load_config(config_file)
+    logger.info('config:', config)
+    logger.info('config value:', config.CONST)
     logger.info('running')
-
-
-def run(config_file=None):
-    print('config_file:', config_file)
-    Service(
-        target=target,
-        work_path=WORK_PATH,
-        run_delta=60,
-        max_cpu_percent=10,
-    ).run_once()

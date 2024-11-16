@@ -5,8 +5,7 @@ import subprocess
 
 class Bootstrapper:
     def __init__(self, script_path, requirements_file=None, venv_dir='venv',
-                 task_schedule_mins=2,
-                 linux_args=None, windows_args=None):
+                 task_schedule_mins=2, linux_args=None, windows_args=None):
         self.script_path = os.path.realpath(script_path)
         self.requirements_file = requirements_file or os.path.join(
             os.path.dirname(os.path.realpath(__file__)), 'requirements.txt')
@@ -65,20 +64,6 @@ class Bootstrapper:
             raise SystemExit('Failed to update crontab')
         print('Successfully updated crontab')
 
-    # def _setup_windows_task_onlogon(self, cmd, task_name):
-    #     if ctypes.windll.shell32.IsUserAnAdmin() == 0:
-    #         raise SystemExit('Failed: must run as admin')
-    #     subprocess.check_call(['schtasks', '/create',
-    #         '/tn', task_name,
-    #         '/tr', cmd,
-    #         '/sc', 'onlogon',
-    #         '/rl', 'highest',
-    #         '/f',
-    #     ])
-    #     subprocess.check_call(['schtasks', '/run',
-    #         '/tn', task_name,
-    #     ])
-
     def _setup_windows_task(self, cmd, task_name):
         if ctypes.windll.shell32.IsUserAnAdmin() == 0:
             raise SystemExit('Failed: must run as admin')
@@ -107,7 +92,5 @@ class Bootstrapper:
             self._setup_linux_task(cmd=self._get_cmd(self.linux_args))
 
 
-Bootstrapper(
-    script_path=os.path.join(os.path.dirname(os.path.realpath(__file__)),
-        'test_svc.py'),
-).run()
+Bootstrapper(script_path=os.path.join(os.path.dirname(
+    os.path.realpath(__file__)), 'test_svc.py'))
