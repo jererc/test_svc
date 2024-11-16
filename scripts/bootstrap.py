@@ -4,11 +4,13 @@ import subprocess
 
 
 class Bootstrapper:
-    def __init__(self, name, script_path, requires=None, venv_dir='venv',
-                 task_schedule_mins=2, linux_args=None, windows_args=None):
+    def __init__(self, name, script_path, requires=None, force_reinstall=True,
+                 venv_dir='venv', task_schedule_mins=2,
+                 linux_args=None, windows_args=None):
         self.name = name
         self.script_path = os.path.realpath(script_path)
         self.requires = requires
+        self.force_reinstall = force_reinstall
         self.venv_dir = venv_dir
         self.task_schedule_mins = task_schedule_mins
         self.linux_args = linux_args
@@ -33,7 +35,10 @@ class Bootstrapper:
                 subprocess.check_call(['pip', 'install', 'virtualenv'])
             subprocess.check_call(['virtualenv', self.venv_path])
         if self.requires:
-            subprocess.check_call([self.pip_path, 'install'] + self.requires)
+            base_cmd = [self.pip_path, 'install']
+            if self.force_reinstall:
+                base_cmd.append('--force-reinstall')
+            subprocess.check_call(base_cmd + self.requires)
         print(f'Created the virtualenv in {self.venv_path}')
 
     def _get_crontab_schedule(self):
