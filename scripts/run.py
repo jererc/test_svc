@@ -15,3 +15,7 @@ def run(config_file=CONFIG_FILE):
         work_path=WORK_PATH,
         run_delta=1,
     ).run_once()
+
+
+if __name__ == '__main__':
+    run()
