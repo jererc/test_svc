@@ -1,6 +1,6 @@
 import os
 
-from svcutils.svcutils import get_logger, load_config
+from svcutils.service import get_logger, load_config
 from webutils.webutils import get_browser_driver
 
 

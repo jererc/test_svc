@@ -1,6 +1,6 @@
 import os
 
-from svcutils.svcutils import Service
+from svcutils.service import Service
 from test_svc.test_svc import WORK_PATH, main
 
 
