@@ -10,6 +10,7 @@ Bootstrapper(
     script_path=os.path.join(os.path.dirname(
         os.path.realpath(__file__)), 'run.py'),
     requires=[
-        'https://github.com/jererc/test_svc/archive/refs/heads/main.zip',
+        # 'https://github.com/jererc/test_svc/archive/refs/heads/main.zip',
+        'git+https://github.com/jererc/test_svc.git',
     ],
 ).run()
