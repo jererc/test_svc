@@ -6,7 +6,7 @@ setup(
     author='jererc',
     author_email='jererc@gmail.com',
     url='https://github.com/jererc/test_svc',
-    packages=find_packages(exclude=['tests*']),
+    packages=find_packages(exclude=['tests', 'scripts']),
     python_requires='>=3.10',
     # entry_points={
     #     'console_scripts': [

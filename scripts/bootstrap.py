@@ -93,4 +93,4 @@ class Bootstrapper:
 
 
 Bootstrapper(script_path=os.path.join(os.path.dirname(
-    os.path.realpath(__file__)), 'test_svc.py'))
+    os.path.realpath(__file__)), 'test_svc.py')).run()
