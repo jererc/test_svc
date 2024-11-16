@@ -12,6 +12,6 @@ logger = get_logger(path=WORK_PATH, name=NAME)
 
 def main(config_file):
     config = load_config(config_file)
-    logger.info('config:', config)
+    print('running')
     logger.info('config value:', config.CONST)
     logger.info('running')
