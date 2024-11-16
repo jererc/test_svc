@@ -3,7 +3,7 @@ import urllib.request
 
 url = 'https://raw.githubusercontent.com/jererc/svcutils/refs/heads/main/svcutils/bootstrap.py'
 response = urllib.request.urlopen(url)
-code = response.read().decode("utf-8")
+code = response.read().decode('utf-8')
 exec(code)
 Bootstrapper(
     name='test_svc',
