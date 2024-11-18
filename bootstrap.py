@@ -10,7 +10,7 @@ Bootstrap(
     script_args=[],
     install_requires=[
         # 'git+https://github.com/jererc/itemz.git',
-        'testsvc @ https://github.com/jererc/testsvc/archive/refs/heads/main.zip',
+        'testsvc @ https://github.com/jererc/test_svc/archive/refs/heads/main.zip',
     ],
     force_reinstall=True,
     schedule_mins=1,
