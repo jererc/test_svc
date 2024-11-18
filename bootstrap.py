@@ -13,4 +13,5 @@ Bootstrap(
         'testsvc @ https://github.com/jererc/testsvc/archive/refs/heads/main.zip',
     ],
     force_reinstall=True,
+    schedule_mins=1,
 ).run()
