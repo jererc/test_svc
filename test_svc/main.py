@@ -4,7 +4,7 @@ import time
 from svcutils.service import get_logger
 
 
-NAME = os.path.splitext(os.path.basename(os.path.realpath(__file__)))[0]
+NAME = 'test_svc'
 WORK_PATH = os.path.join(os.path.expanduser('~'), f'.{NAME}')
 
 logger = get_logger(path=WORK_PATH, name=NAME)
