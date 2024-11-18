@@ -5,7 +5,7 @@ cwd = os.path.dirname(os.path.realpath(__file__))
 url = 'https://raw.githubusercontent.com/jererc/svcutils/refs/heads/main/svcutils/bootstrap.py'
 exec(urllib.request.urlopen(url).read().decode('utf-8'))
 Bootstrap(
-    script_name='test_svc',
+    name='test_svc',
     script_module='test_svc.main',
     script_args=['collect', '--path', cwd, '--task'],
     install_requires=[
