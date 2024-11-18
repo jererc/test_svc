@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='testsvc',
+    name='test_svc',
     version='0.1.0',
     author='jererc',
     author_email='jererc@gmail.com',
@@ -17,7 +17,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'testsvc=testsvc.main:main',
+            'test_svc=test_svc.main:main',
         ],
     },
     include_package_data=True,

@@ -6,11 +6,11 @@ url = 'https://raw.githubusercontent.com/jererc/svcutils/refs/heads/main/svcutil
 exec(urllib.request.urlopen(url).read().decode('utf-8'))
 
 Bootstrap(
-    script_name='testsvc',
+    script_name='test_svc',
     script_args=[],
     install_requires=[
         # 'git+https://github.com/jererc/itemz.git',
-        'testsvc @ https://github.com/jererc/test_svc/archive/refs/heads/main.zip',
+        'test_svc @ https://github.com/jererc/test_svc/archive/refs/heads/main.zip',
     ],
     force_reinstall=True,
     schedule_mins=1,
