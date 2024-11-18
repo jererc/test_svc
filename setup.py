@@ -17,7 +17,8 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'test_svc=test_svc.run_script:main',
+            'test_svc=test_svc.main:main',
+            # 'test_svc=test_svc.run_script:main',
         ],
     },
     include_package_data=True,
