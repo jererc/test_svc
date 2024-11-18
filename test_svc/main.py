@@ -1,7 +1,7 @@
 import os
 import time
 
-from svcutils.service import get_logger, load_config
+from svcutils.service import get_logger
 
 
 NAME = os.path.splitext(os.path.basename(os.path.realpath(__file__)))[0]
